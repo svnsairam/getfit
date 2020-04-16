@@ -11,7 +11,9 @@
       <h2 class="subtitle">
         Subtitle
       </h2>
-      <button class="button is-link is-inverted is-outlined">Invert Outlined</button>
+      <button class="button is-link is-inverted is-outlined">
+       <router-link to="/registration">Register</router-link>
+      </button>
     </div>
   </div>
 

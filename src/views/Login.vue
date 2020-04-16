@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <form>
     <div class="field">
       <p class="control has-icons-left has-icons-right">
         <input class="input" type="email" placeholder="Email" />
@@ -24,11 +24,13 @@
         <button class="button is-success">Login</button>
       </p>
     </div>
-  </div>
+  </form>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Login"
+};
 </script>
 
 <style lang="scss" scoped>

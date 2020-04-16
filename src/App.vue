@@ -1,16 +1,16 @@
 <template>
   <div id="app">
       <NavBar></NavBar>
-      <Home></Home>  
+      <router-view>
+      </router-view>  
   </div>
 </template>
 <script>
-import Home from './views/Home.vue';
 import NavBar from './views/NavBar.vue';
 
 export default {
   name: 'App',
-  components: { Home, NavBar, },
+  components: { NavBar, },
 };
 </script>
 <style lang="scss">
