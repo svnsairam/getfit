@@ -44,22 +44,51 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
-              <router-link to="/registration">Sign up</router-link>
-            </a>
-            <a class="button is-light">
-              <router-link to="/login">Login</router-link>
-            </a>
+            <button class="button is-info is-outlined" @click="toggleRegisterModal">Sign Up</button>
+            <div v-if="isModalRegisterOpen" class="modal is-active">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <Registration></Registration>
+              </div>
+              <button class="modal-close is-large" aria-label="close" @click="toggleRegisterModal"></button>
+            </div>
+            <a class="button is-info is-outlined" @click="toggleLoginModal">Login</a>
+            <div v-if="isModalLoginOpen" class="modal is-active">
+              <div class="modal-background"></div>
+              <div class="modal-card">
+                <Login></Login>
+              </div>
+              <button class="modal-close is-large" aria-label="close" @click="toggleLoginModal"></button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </nav>
 </template>
-
 <script>
+import Login from "./Login.vue";
+import Registration from "./Registration.vue";
 export default {
-  name: "NavBar"
+  name: "NavBar",
+  components: {
+    Login,
+    Registration
+  },
+  data() {
+    return {
+      isModalRegisterOpen: false,
+      isModalLoginOpen: false
+    };
+  },
+  methods: {
+    toggleRegisterModal() {
+      this.isModalRegisterOpen = !this.isModalRegisterOpen;
+    },
+    toggleLoginModal() {
+      this.isModalLoginOpen = !this.isModalLoginOpen;
+    }
+  }
 };
 </script>
 
