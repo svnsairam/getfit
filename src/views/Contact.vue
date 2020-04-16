@@ -1,5 +1,8 @@
 <template>
-  <form>
+  <section>
+    <div class="columns is-mobile">
+        <div class="column is-half is-offset-one-quarter">
+
     <div class="field">
       <label class="label">Email</label>
       <div class="control has-icons-left has-icons-right">
@@ -28,15 +31,18 @@
       </div>
     </div>
 
-    <div class="field is-grouped">
+    <div class="field is-grouped is-grouped-centered">
       <div class="control">
-        <button class="button is-link">Submit</button>
+        <button class="button is-primary">Send</button>
       </div>
       <div class="control">
-        <button class="button is-link is-light">Cancel</button>
+        <button class="button is-light">Cancel</button>
       </div>
     </div>
-  </form>
+    </div>
+    
+    </div>
+  </section>
 </template>
 
 <script>
