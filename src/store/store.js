@@ -17,7 +17,7 @@ const state = {
             firstName: 'Sarsu',
             lastName: 'Kurra',
             userName: 'kurrasarsu',
-            email: 'kurrasarau@gmail.com',
+            email: 'kurrasarsu@gmail.com',
             password:'1sarsu9',
           },
           {
