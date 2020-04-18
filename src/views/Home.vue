@@ -6,6 +6,7 @@
         <div class="container has-text-centered">
           <h1 class="title">Title</h1>
           <h2 class="subtitle">Subtitle</h2>
+          <div v-if="currentLoggedInUser.length==0">
           <button
             class="button is-link is-inverted is-outlined"
             @click="toggleRegisterModal"
@@ -13,13 +14,16 @@
           <div v-if="isModalRegisterOpen" class="modal is-active">
             <div class="modal-background"></div>
             <div class="modal-card">
-              <Registration></Registration>
+              <Registration @userSaved="toggleRegisterModal()" @cancel="toggleRegisterModal()"></Registration>
             </div>
             <button class="modal-close is-large" aria-label="close" @click="toggleRegisterModal"></button>
           </div>
         </div>
+        <div v-if="currentLoggedInUser.length>0">
+          <h1>Happy to See you here {{currentLoggedInUser[0].firstName}} {{currentLoggedInUser[0].lastName}}</h1>
+        </div>
       </div>
-
+      </div>
       <!-- Hero footer: will stick at the bottom -->
       <div class="hero-foot"></div>
     </section>
@@ -28,7 +32,7 @@
 
 <script>
 import Registration from "./Registration.vue";
-
+import {mapState} from 'vuex';
 export default {
   name: "Home",
   components: {
@@ -41,9 +45,17 @@ export default {
   },
   methods: {
     toggleRegisterModal() {
+      console.log("EVENT EMITTED");
       this.isModalRegisterOpen = !this.isModalRegisterOpen;
     }
-  }
+  },
+ computed: {
+    // activities() {
+    //   return this.$store.state.activities; 
+    // }
+    // ...mapState({activities: state => state.activities}),
+    ...mapState({currentLoggedInUser: 'currentLoggedInUser'}),
+  },
 };
 </script>
 

@@ -38,11 +38,12 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+            <div v-if="currentLoggedInUser.length==0">
             <button class="button is-info is-outlined" @click="toggleRegisterModal">Sign Up</button>
             <div v-if="isModalRegisterOpen" class="modal is-active">
               <div class="modal-background"></div>
               <div class="modal-card">
-                <Registration></Registration>
+                <Registration @userSaved="toggleRegisterModal()" @cancel="toggleRegisterModal()"></Registration>
               </div>
               <button class="modal-close is-large" aria-label="close" @click="toggleRegisterModal"></button>
             </div>
@@ -50,9 +51,13 @@
             <div v-if="isModalLoginOpen" class="modal is-active">
               <div class="modal-background"></div>
               <div class="modal-card">
-                <Login></Login>
+                <Login @loggedInSuccessfully="toggleLoginModal"></Login>
               </div>
               <button class="modal-close is-large" aria-label="close" @click="toggleLoginModal"></button>
+            </div>
+            </div>
+            <div v-if="currentLoggedInUser.length>0">
+              <a class="button is-info is-outlined" @click="logout">Logout</a>
             </div>
           </div>
         </div>
@@ -63,6 +68,8 @@
 <script>
 import Login from "./Login.vue";
 import Registration from "./Registration.vue";
+import {mapActions,mapState} from 'vuex';
+
 export default {
   name: "NavBar",
   components: {
@@ -76,13 +83,28 @@ export default {
     };
   },
   methods: {
+    ...mapActions(['deleteCurrentUserAction']),
     toggleRegisterModal() {
       this.isModalRegisterOpen = !this.isModalRegisterOpen;
     },
     toggleLoginModal() {
       this.isModalLoginOpen = !this.isModalLoginOpen;
+    },
+    logout(){
+      console.log(this.currentLoggedInUser);
+      if(this.currentLoggedInUser.length>0){
+        this.deleteCurrentUserAction(this.currentLoggedInUser[0]);
+      }
+            console.log(this.currentLoggedInUser);
     }
-  }
+  },
+   computed: {
+    // activities() {
+    //   return this.$store.state.activities; 
+    // }
+    // ...mapState({activities: state => state.activities}),
+    ...mapState({currentLoggedInUser: 'currentLoggedInUser'}),
+  },
 };
 </script>
 

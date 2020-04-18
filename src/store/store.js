@@ -1,10 +1,40 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import { GET_CURRENT_USER, GET_AUTHORIZED_USER, ADD_AUTHORIZED_USER, ADD_CURRENT_USER, DELETE_CURRENT_USER } from './mutation-types';
 
 Vue.use(Vuex)
 
 const state = {
-    users: [],
+    authorizedUsers: [
+        {
+            firstName: 'Sairam',
+            lastName: 'Svn',
+            userName: 'svnsairam',
+            email: 'svnsr444@gmail.com',
+            password:'1sairam9',
+          },
+          {
+            firstName: 'Sarsu',
+            lastName: 'Kurra',
+            userName: 'kurrasarsu',
+            email: 'kurrasarau@gmail.com',
+            password:'1sarsu9',
+          },
+          {
+            firstName: 'Gowtham',
+            lastName: 'SV',
+            userName: 'svgowtham',
+            email: 'svg@gmail.com',
+            password:'1gowtham9',
+          },
+          {
+            firstName: 'Sree',
+            lastName: 'Lakshmi',
+            userName: 'shrill',
+            email: 'sreelakshmi@gmail.com',
+            password:'1shrill9',
+          },
+    ],
     activities: [
         {
             id: 1,
@@ -106,9 +136,57 @@ const state = {
             activityImage: "https://bulma.io/images/placeholders/1280x960.png"
         }
     ],
+    currentLoggedInUser: [],
 };
-const mutations = {};
-const actions = {};
+const mutations = {
+    [GET_AUTHORIZED_USER](state, authorizedUsers) {
+        state.authorizedUsers = authorizedUsers;
+    },
+    [ADD_AUTHORIZED_USER](state, user) {
+        state.authorizedUsers.push(user);
+    },
+    [ADD_CURRENT_USER](state, user) {
+        state.currentLoggedInUser.push(user);
+    },
+    [DELETE_CURRENT_USER](state, user) {
+        // this function eachUser => eachUser.email != user.email
+        // loops over eachUser in the currentLoggedInUser array and returns all the users 
+        // whose email doesn't match with user.email
+        // ... implies shallow cloning of the objects
+        // state.currentLoggedInUser = [...state.currentLoggedInUser.filters(eachUser => eachUser.email != user.email)];
+        console.log(user);
+        state.currentLoggedInUser = [];
+    },
+    [GET_CURRENT_USER](state, currentUsers) {
+        state.currentLoggedInUser = currentUsers;
+    },
+};
+const actions = {
+    getAuthorizedUsersAction({ commit }) {
+        // const authorizedUsers = await dataService.getUsers();
+        console.log("fasdhkfdk")
+        const authorizedUsers = this.$store.state.authorizedUsers;
+        commit(GET_AUTHORIZED_USER, authorizedUsers);
+    },
+    getCurrentUserAction({ commit }) {
+        // const authorizedUsers = await dataService.getUsers();
+        const currentUsers = [];
+        commit(GET_CURRENT_USER, currentUsers);
+    },
+    addAuthorizedUserAction({ commit }, user) {
+        console.log("hi addAuthorizedUserAction");
+        commit(ADD_AUTHORIZED_USER, user);
+    },
+    addCurrentUserAction({ commit }, user) {
+        console.log("hi addCurrentUserAction");
+        commit(ADD_CURRENT_USER, user);
+    },
+    deleteCurrentUserAction({ commit }, user) {
+        //    const addedUser= await dataService.deleteUser(user);
+        commit(DELETE_CURRENT_USER, user);
+    },
+
+};
 const getters = {};
 
 export default new Vuex.Store({

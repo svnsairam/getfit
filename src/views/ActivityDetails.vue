@@ -1,24 +1,31 @@
 <template>
-   <div class="event-card">
-    <div class="card">
-      <div class="card-content">
-        <h1 class="text">{{activity.id}}</h1>
-        <h2 class="is-size-4 has-text-weight-bold">{{activity.activityName}}</h2>
-        
-        <span>{{activity.dailyPlans}}</span>
+  <div>
+    <div v-if="currentLoggedInUser.length>0">
+      <div class="event-card">
+        <div class="card">
+          <div class="card-content">
+            <h1 class="text">{{activity.id}}</h1>
+            <h2 class="is-size-4 has-text-weight-bold">{{activity.activityName}}</h2>
+
+            <span>{{activity.dailyPlans}}</span>
+          </div>
+        </div>
       </div>
+    </div>
+    <div v-if="currentLoggedInUser.length==0">
+      <h1>Please Login to View this Page</h1>
     </div>
   </div>
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   name: "ActivityDetails",
-    data() {
+  data() {
     return {
-      activity: {},
+      activity: {}
     };
   },
   created() {
@@ -28,12 +35,13 @@ export default {
   },
   computed: {
     // activities() {
-    //   return this.$store.state.activities; 
+    //   return this.$store.state.activities;
     // }
 
     // We get activities from activity state.
-    ...mapState({activityDetails: 'activityDetails'}),
-},
+    ...mapState({ activityDetails: "activityDetails" }),
+    ...mapState({ currentLoggedInUser: "currentLoggedInUser" })
+  }
 };
 </script>
 
