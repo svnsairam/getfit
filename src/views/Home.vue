@@ -9,7 +9,7 @@
           <button
             class="button is-link is-inverted is-outlined"
             @click="toggleRegisterModal"
-          >Register Now</button>
+          >Join Now</button>
           <div v-if="isModalRegisterOpen" class="modal is-active">
             <div class="modal-background"></div>
             <div class="modal-card">

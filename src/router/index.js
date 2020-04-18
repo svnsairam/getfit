@@ -19,7 +19,7 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/Activities.vue')
   },
   {
-    path: '/activityDetails',
+    path: '/activityDetails/:id',
     name: 'ActivityDetails',
     component: () => import(/* webpackChunkName: "about" */ '../views/ActivityDetails.vue')
   },
@@ -27,11 +27,6 @@ Vue.use(VueRouter)
     path: '/contact',
     name: 'Contact',
     component: () => import(/* webpackChunkName: "about" */ '../views/Contact.vue')
-  },
-  {
-    path: '/registration',
-    name: 'Registration',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Registration.vue')
   },
   {
     path: '/about',
