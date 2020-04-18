@@ -21,7 +21,8 @@ Vue.use(VueRouter)
   {
     path: '/activityDetails/:id',
     name: 'ActivityDetails',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ActivityDetails.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/ActivityDetails.vue'),
+    props: true,
   },
   {
     path: '/contact',

@@ -3,18 +3,18 @@
         <div class="card">
           <div class="card-image">
             <figure class="image">
-              <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image" />
+              <img v-bind:src="activity.activityImage" alt="Placeholder image" />
             </figure>
           </div>
           <div class="card-content">
             <div class="media">
               <div class="media-content">
-                <p class="title is-4">Activity Name</p>
+                <p class="title is-4">{{activity.activityName}}</p>
               </div>
             </div>
 
             <div class="content">
-              Activity description
+              {{activity.activityDescription}}
             </div>
           </div>
         </div>
@@ -24,6 +24,12 @@
 <script>
     export default {
         name : 'ActivityCard',
+        props: {
+          activity: {
+            type: Object,
+            default: () => {},
+          },
+        },
     }
 </script>
 
