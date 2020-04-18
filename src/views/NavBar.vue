@@ -27,18 +27,12 @@
           <router-link to="/activities">Activities</router-link>
         </a>
 
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">More</a>
-
-          <div class="navbar-dropdown">
             <a class="navbar-item">
               <router-link to="/about">About</router-link>
             </a>
             <a class="navbar-item">
               <router-link to="/contact">Contact</router-link>
             </a>
-          </div>
-        </div>
       </div>
 
       <div class="navbar-end">
