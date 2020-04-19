@@ -8,40 +8,52 @@
       <div class="field">
         <label class="label">First Name</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input" v-model="authorizedUser.firstName" />
+          <input class="input" type="text" placeholder="First Name" v-model="authorizedUser.firstName" />
         </div>
       </div>
 
       <div class="field">
         <label class="label">Last Name</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input" v-model="authorizedUser.lastName"/>
+          <input class="input" type="text" placeholder="Last Name" v-model="authorizedUser.lastName"/>
         </div>
       </div>
 
       <div class="field">
         <label class="label">Username</label>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-success" type="text" placeholder="Text input" v-model="authorizedUser.userName" />
-          <span class="icon is-small is-left">
-            <i class="fas fa-user"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fas fa-check"></i>
-          </span>
+        <div class="control">
+          <input class="input is-success" type="text" placeholder="Username" v-model="authorizedUser.userName" />
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="dateOfBirth">Date Of Birth</label>
+        <input type="date" class="input" id="dateOfBirth" v-model="authorizedUser.dateOfBirth" />
+      </div>
+
+      <div class="field">
+        <label class="label">Country</label>
+        <div class="control">
+          <input class="input" type="email" placeholder="Country" v-model="authorizedUser.country" />
         </div>
       </div>
 
       <div class="field">
+        <label class="label">Phone</label>
+        <div class="control">
+          <input
+            class="input is-success"
+            type="text"
+            placeholder="Phone"
+            v-model="authorizedUser.phone"
+          />
+        </div>
+      </div>
+
+
+      <div class="field">
         <label class="label">Email</label>
-        <div class="control has-icons-left has-icons-right">
-          <input class="input is-danger" type="email" placeholder="Email input" v-model="authorizedUser.email" />
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <span class="icon is-small is-right">
-            <i class="fas fa-exclamation-triangle"></i>
-          </span>
+        <div class="control">
+          <input class="input" type="email" placeholder="Email" v-model="authorizedUser.email" />
         </div>
       </div>
 
@@ -85,6 +97,9 @@ export default {
         userName: '',
         email: '',
         password:'',
+        phone:'',
+        country:'',
+        dateOfBirth:'1900-01-01',
       };
   },
   methods: {

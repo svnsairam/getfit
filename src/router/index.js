@@ -25,6 +25,11 @@ Vue.use(VueRouter)
     props: true,
   },
   {
+    path: '/user',
+    name: 'UserProfile',
+    component: () => import(/* webpackChunkName: "about" */ '../views/UserProfile.vue'),
+  },
+  {
     path: '/contact',
     name: 'Contact',
     component: () => import(/* webpackChunkName: "about" */ '../views/Contact.vue')

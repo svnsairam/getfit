@@ -27,34 +27,45 @@
           <router-link to="/activities">Activities</router-link>
         </a>
 
-            <a class="navbar-item">
-              <router-link to="/about">About</router-link>
-            </a>
-            <a class="navbar-item">
-              <router-link to="/contact">Contact</router-link>
-            </a>
+        <a class="navbar-item">
+          <router-link to="/about">About</router-link>
+        </a>
+        <a class="navbar-item">
+          <router-link to="/contact">Contact</router-link>
+        </a>
+        
+          <a v-if="currentLoggedInUser.length>0" class="navbar-item">
+            <router-link to='/user' >User Profile</router-link>
+          </a>
+          <a v-if="currentLoggedInUser.length==0" class="navbar-item">
+            <router-link to='/user' >User Profile</router-link>
+          </a>
       </div>
 
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
             <div v-if="currentLoggedInUser.length==0">
-            <button class="button is-info is-outlined" @click="toggleRegisterModal">Sign Up</button>
-            <div v-if="isModalRegisterOpen" class="modal is-active">
-              <div class="modal-background"></div>
-              <div class="modal-card">
-                <Registration @userSaved="toggleRegisterModal()" @cancel="toggleRegisterModal()"></Registration>
+              <button class="button is-info is-outlined" @click="toggleRegisterModal">Sign Up</button>
+              <div v-if="isModalRegisterOpen" class="modal is-active">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <Registration @userSaved="toggleRegisterModal()" @cancel="toggleRegisterModal()"></Registration>
+                </div>
+                <button
+                  class="modal-close is-large"
+                  aria-label="close"
+                  @click="toggleRegisterModal"
+                ></button>
               </div>
-              <button class="modal-close is-large" aria-label="close" @click="toggleRegisterModal"></button>
-            </div>
-            <a class="button is-info is-outlined" @click="toggleLoginModal">Login</a>
-            <div v-if="isModalLoginOpen" class="modal is-active">
-              <div class="modal-background"></div>
-              <div class="modal-card">
-                <Login @loggedInSuccessfully="toggleLoginModal"></Login>
+              <a class="button is-info is-outlined" @click="toggleLoginModal">Login</a>
+              <div v-if="isModalLoginOpen" class="modal is-active">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                  <Login @loggedInSuccessfully="toggleLoginModal"></Login>
+                </div>
+                <button class="modal-close is-large" aria-label="close" @click="toggleLoginModal"></button>
               </div>
-              <button class="modal-close is-large" aria-label="close" @click="toggleLoginModal"></button>
-            </div>
             </div>
             <div v-if="currentLoggedInUser.length>0">
               <a class="button is-info is-outlined" @click="logout">Logout</a>
@@ -68,7 +79,7 @@
 <script>
 import Login from "./Login.vue";
 import Registration from "./Registration.vue";
-import {mapActions,mapState} from 'vuex';
+import { mapActions, mapState } from "vuex";
 
 export default {
   name: "NavBar",
@@ -83,28 +94,28 @@ export default {
     };
   },
   methods: {
-    ...mapActions(['deleteCurrentUserAction']),
+    ...mapActions(["deleteCurrentUserAction"]),
     toggleRegisterModal() {
       this.isModalRegisterOpen = !this.isModalRegisterOpen;
     },
     toggleLoginModal() {
       this.isModalLoginOpen = !this.isModalLoginOpen;
     },
-    logout(){
+    logout() {
       console.log(this.currentLoggedInUser);
-      if(this.currentLoggedInUser.length>0){
+      if (this.currentLoggedInUser.length > 0) {
         this.deleteCurrentUserAction(this.currentLoggedInUser[0]);
       }
-            console.log(this.currentLoggedInUser);
+      console.log(this.currentLoggedInUser);
     }
   },
-   computed: {
+  computed: {
     // activities() {
-    //   return this.$store.state.activities; 
+    //   return this.$store.state.activities;
     // }
     // ...mapState({activities: state => state.activities}),
-    ...mapState({currentLoggedInUser: 'currentLoggedInUser'}),
-  },
+    ...mapState({ currentLoggedInUser: "currentLoggedInUser" })
+  }
 };
 </script>
 

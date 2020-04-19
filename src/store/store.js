@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { GET_CURRENT_USER, GET_AUTHORIZED_USER, ADD_AUTHORIZED_USER, ADD_CURRENT_USER, DELETE_CURRENT_USER } from './mutation-types';
+import {UPDATE_AUTHORIZED_USER, GET_CURRENT_USER, GET_AUTHORIZED_USER, ADD_AUTHORIZED_USER, ADD_CURRENT_USER, DELETE_CURRENT_USER } from './mutation-types';
 
 Vue.use(Vuex)
 
@@ -12,6 +12,9 @@ const state = {
             userName: 'svnsairam',
             email: 'svnsr444@gmail.com',
             password:'1sairam9',
+            phone: '+17033403835',
+            country: 'India',
+            dateOfBirth: "1989-02-12",
           },
           {
             firstName: 'Sarsu',
@@ -19,6 +22,9 @@ const state = {
             userName: 'kurrasarsu',
             email: 'kurrasarsu@gmail.com',
             password:'1sarsu9',
+            phone: '+17033403835',
+            country: 'USA',
+            dateOfBirth: "1999-12-30",
           },
           {
             firstName: 'Gowtham',
@@ -26,6 +32,9 @@ const state = {
             userName: 'svgowtham',
             email: 'svg@gmail.com',
             password:'1gowtham9',
+            phone: '+17033403835',
+            country: 'India',
+            dateOfBirth: "1996-01-14",
           },
           {
             firstName: 'Sree',
@@ -33,6 +42,9 @@ const state = {
             userName: 'shrill',
             email: 'sreelakshmi@gmail.com',
             password:'1shrill9',
+            phone: '+17033403835',
+            country: 'USA',
+            dateOfBirth: "1995-05-17",
           },
     ],
     activities: [
@@ -160,6 +172,11 @@ const mutations = {
     [GET_CURRENT_USER](state, currentUsers) {
         state.currentLoggedInUser = currentUsers;
     },
+    [UPDATE_AUTHORIZED_USER](state, user){
+        const index = state.authorizedUsers.findIndex(h=>h.userName == user.userName);
+        state.authorizedUsers.splice(index,1,user);
+        state.authorizedUsers = [...state.authorizedUsers];
+    }
 };
 const actions = {
     getAuthorizedUsersAction({ commit }) {
@@ -185,7 +202,10 @@ const actions = {
         //    const addedUser= await dataService.deleteUser(user);
         commit(DELETE_CURRENT_USER, user);
     },
-
+    updateAuthorizedUserAction({commit},user){
+     //    const updatedUser= await dataService.UpdatedUser(user);
+        commit(UPDATE_AUTHORIZED_USER,user)
+    }
 };
 const getters = {};
 
